@@ -17,8 +17,8 @@ $vm_number = ""
 $check_input = "false"
 
 $vm_network_switch_name = "VMs-NetworkSwitch"
-$vm_MacAddress = "00:15:5D:1B:15:"
-$vm_IpAddress = "10.153.32."
+$vm_MacAddress = "00:15:5D:1C:15:"
+$vm_IpAddress = "10.55.32."
 $vm_cpu_count = 2
 $vm_MemoryMinimumBytes = 1024MB
 $vm_MemoryMaximumBytes = 4096MB
