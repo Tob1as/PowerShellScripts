@@ -9,6 +9,6 @@ Use:
 * coming soon ...
 
 Note:
-* This script is successful tested with *Windows Server 2012 R2* and *Windows Server 2016*. For Windows 10 see [MS Docs](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-6) about execution policies. 
+* This script is successful tested with *Windows Server 2012 R2* with PowerShell 4.0 and *Windows Server 2016*. For Windows 10 see [MS Docs](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-6) about execution policies. 
 * other Mirror: [GitLab.RLP.net](https://gitlab.rlp.net/stwmz-nags/internetloginwithpowershell)
 * or for Linux: [Click](https://github.com/TobiasH87/internetloginwithwget)
