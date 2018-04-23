@@ -26,10 +26,10 @@ while($true)
         if (-not $pingStatus){
             Write-Host "Host : $($HOSTS[$i]) is not available (ping failed) at $(Get-Date -Format 'd.M.yyyy HH:mm:ss')" -ForegroundColor "Red"
             $fail+=1
-	    } else {
-	        Write-Host "Host : $($HOSTS[$i]) is available (ping successful) at $(Get-Date -Format 'd.M.yyyy HH:mm:ss')" -ForegroundColor "Green"
+        } else {
+            Write-Host "Host : $($HOSTS[$i]) is available (ping successful) at $(Get-Date -Format 'd.M.yyyy HH:mm:ss')" -ForegroundColor "Green"
             $fail+=0
-	    }
+        }
     }
 
     # login again, when more then 50% pings to hosts failed
