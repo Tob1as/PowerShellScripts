@@ -50,3 +50,5 @@ switch ( $cmd ) {
     'login' { login }
     default { Write-Host "Usage: .\login_wohnheim_uni_mainz_de.ps1 -cmd login|logout|reconnect -configtype file|none"  -ForegroundColor "DarkYellow" }
 }
+
+#Start-Sleep -Seconds 30
