@@ -34,7 +34,7 @@ while($true)
 
     # login again, when more then 50% pings to hosts failed
     $fail_percent = ($fail/$HOSTS.length)*100
-    Write-Host $("{0:N2}% ping failed" -f $fail_percent) -ForegroundColor "Gray"
+    Write-Host $("{0:N2}% ping lost" -f $fail_percent) -ForegroundColor "Gray"
     if ($fail_percent -gt 50){
         Write-Host "Logging in... at $(Get-Date -Format 'd.M.yyyy HH:mm:ss')"
         #&"$PSScriptRoot\login_wohnheim_uni_mainz_de.ps1"
