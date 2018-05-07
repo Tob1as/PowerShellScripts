@@ -61,7 +61,7 @@ if ($check_input -eq "true"){
     }
 
     # Check new vm not exist
-    $vm_exists = get-vm -name ${vm_prefix}${vm_number} -ErrorAction SilentlyContinue
+    $vm_exists = get-vm -name ${vm_prefix}${vm_number} -ErrorAction SilentlyContinue | select -expand Name
     if(-not $vm_exists) {
         # Create VM with this virtual_hard_disk
         # https://docs.microsoft.com/en-us/powershell/module/hyper-v/?view=win10-ps
