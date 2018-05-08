@@ -2,9 +2,9 @@
     Hyper-V
     deploy more than one virtual machines (VMs)
 
-    Version: 1.0
+    Version: 2.0
     Author: Tobias Hargesheimer
-    Creation Date: 07.05.2018
+    Creation Date: 07.05.2018 | Last Change: 08.05.2018
 #>
 
 # Variables

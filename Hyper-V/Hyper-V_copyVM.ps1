@@ -2,15 +2,19 @@
     Hyper-V
     copy virtual machines (VMs)
 
-    Version: 1.1
+    Version: 2.0
     Author: Tobias Hargesheimer
-    Creation Date: 10.04.2018 | Last Change: 07.05.2018
+    Creation Date: 10.04.2018 | Last Change: 08.05.2018
 #>
 
 param (
     [String]$number = $null, # VM Number
     [Int]$sct = 5 # script_close_time
 )
+
+# Variables
+[Int64]$memory_specification = 1MB # compare memory data in vmcopy.ini
+[String]$memory_specification_asString = "MB" # compare memory data in vmcopy.ini
 
 # Variables - do not change
 [String]$virtual_hard_disks_path = $null
@@ -48,8 +52,8 @@ if (Test-Path "$PSScriptRoot\vmcopy.ini") {
     $vm_MacAddress = $($values.vm_MacAddress)
     $vm_IpAddress = $($values.vm_IpAddress)
     $vm_cpu_count = $($values.vm_cpu_count)
-    $vm_MemoryMinimumBytes = [int64]$($values.vm_MemoryMinimumBytes).Replace('MB','') * 1MB # not nice but work
-    $vm_MemoryMaximumBytes = [int64]$($values.vm_MemoryMaximumBytes).Replace('MB','') * 1MB # not nice but work
+    $vm_MemoryMinimumBytes = [int64]$($values.vm_MemoryMinimumBytes).Replace("${memory_specification_asString}",'') * $memory_specification # not nice but work
+    $vm_MemoryMaximumBytes = [int64]$($values.vm_MemoryMaximumBytes).Replace("${memory_specification_asString}",'') * $memory_specification # not nice but work
     $script_close_time = $($values.script_close_time)
 } else {
     Write-Host "Config File not found!" -ForegroundColor "Red"
@@ -98,13 +102,13 @@ if ($check_input -eq $true){
         # Create VM with this virtual_hard_disk
         # https://docs.microsoft.com/en-us/powershell/module/hyper-v/?view=win10-ps
         Write-Host " "
-        Write-Host "* VM ${vm_name} wird mit ${vm_MemoryMaximumBytes} Byte RAM und Netzwerk-Switch ${vm_network_switch_name} erstellt ..."
+        Write-Host "* VM ${vm_name} wird mit $($vm_MemoryMaximumBytes/$memory_specification)${memory_specification_asString} RAM und Netzwerk-Switch ${vm_network_switch_name} erstellt ..."
         New-VM -Name "${vm_name}" -MemoryStartupBytes $vm_MemoryMaximumBytes -SwitchName "${vm_network_switch_name}" -Generation 2 -NoVHD
         Write-Host "* die kopierte Festplatte ${vm_name}${virtual_hard_disk_file_extension} wird hinzugefügt ..."
         Add-VMHardDiskDrive -VMName "${vm_name}" -Path "${virtual_hard_disks_path}${vm_name}${virtual_hard_disk_file_extension}"
         Write-Host "* der VM werden ${vm_cpu_count} CPUs zugewiesen ..."
         Set-VMProcessor -VMName "${vm_name}" -Count $vm_cpu_count
-        Write-Host "* der Arbeitsspeicher wird auf dynamisch von $vm_MemoryMinimumBytes bis $vm_MemoryMaximumBytes Byte RAM eingestellt ..."
+        Write-Host "* der Arbeitsspeicher wird auf dynamisch von $($vm_MemoryMinimumBytes/$memory_specification) bis $($vm_MemoryMaximumBytes/$memory_specification) ${memory_specification_asString} RAM eingestellt ..."
         Set-VMMemory -VMName "${vm_name}" -DynamicMemoryEnabled $true -MinimumBytes $vm_MemoryMinimumBytes -MaximumBytes $vm_MemoryMaximumBytes
         Write-Host "* der MAC-Adresse wird auf Statisch gestellt (${vm_MacAddress}${vm_number}, IP: ${vm_IpAddress}${vm_number}) ..."
         Set-VMNetworkAdapter -VMName "${vm_name}" -StaticMacAddress "${vm_MacAddress}${vm_number}"
