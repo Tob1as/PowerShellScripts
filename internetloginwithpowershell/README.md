@@ -6,7 +6,7 @@ Internet-Login/Logout for Windows with PowerShell for dormitory network of the J
 * networkmonitoring.ps1 - checked if the device is logged in. If not, it will be logged in with the login script.
 
 Use:
-* ``` git clone https://github.com/TobiasH87/PowerShellScripts.git ```
+* ``` git clone https://github.com/Tob1as/PowerShellScripts.git ```
 * Edit ``` login_config.cfg ``` - File and enter your credentials (username and password).
 * Login
 	* manually: ``` .\login_wohnheim_uni_mainz_de.ps1 -cmd login ``` 
